@@ -1,0 +1,79 @@
+1. List all files beginning with chareecter "a" on the screen and also store them in a file called file 1.
+=> ls [a]* | tee file1
+
+2.Sort the output of who and display on screen along with total number of users. The same outpt excpt the number of users should be stored in a file 1.
+=> a) who -q | sort -n
+   b) wo -Hu | cat>>file 1
+
+3.Double space a file
+=> pr -d file 1
+
+4.Select lines 5 to 10 of a file.
+=>head -10 file1 | tail -n -5
+
+5.Find the user name and group id from the file/etc/passwd using the cut command.
+=> cut -d ":" -f 1,4/etc/passwd
+
+6.Extract the names of the users from /etc/passwd after ignoring the first 10 entries.
+=> cut -d ":" -f 1/etc/passwd | tail -n +11
+
+7.List from /etc/passwd the UID and the user having the highest UID.
+=>sort -l ":" -r-n-k  3/etc/passwd | cut -d ":" -f 1,3 | head -1
+
+
+8.Devie a sequence which lists the five largest files in the current directory.
+=> ls -ls | head -6
+
+9.Remove duplicate lines from a file.
+=>uniq file[1]
+
+10.Count the frequency of occurrences of words in a file.
+=>sort file1 | uniq -c
+
+11.Find "long" listing of the smallest 5 files in the /etc directory whose name contains the string ".conf", sorted by increasing file size.
+=>ls -lsr/etc/*.conf | head -5
+
+12.What would you type at the command line to get a sorted list, no duplicates, of all the users logged into te local network.
+=>who | uniq | sort
+
+13.What would you type at the command line to find all files in your home directory that are more than a week old and end with bak?
+=>fin -mtime +7 -name "*.bak" -ls
+
+14.What would you type at the command line to find out how many total lines are contained in all the files ending in .c in the current directory, printing only the total number of lines?
+=>wc -l *.c
+
+15. Find out the PID of your login shell.
+=>ps aux | grep -i
+
+16.Remove the header line from the ps output.
+=>PID TTY
+
+17.List all processes that you are currently running on your machine, sorted by the command name in alphabetical order. The output should consist only of the processes 
+you are running and nothing else (i.e. if you are running 6 processes, the output 
+should only have 6 lines). 
+=>ps -e
+
+18.Display the files in the current directory that contain the string CSE UEMK in either upper- or lowercase.
+=>grep -il 'CSEUEMK'*
+
+19.Store in a variable the number of lines containing the word CSE in the files CSE1,CSE2 and CSE3.
+=>$var=`grep CSE cse[1-3] | wc -l`
+  $ echo $var
+
+20.If you did not have the wc command, how would you use grep to count the number of users currently using the system?
+=>who | grep -c",*"
+
+21.Remove blank lines from a file using grep.
+=>grep -v "^s" aa1
+
+22.List the ordinary files in your current directory that are not writable by the owner.
+=>ls -l | grep -v ‘^..w
+
+23.Locate lines ending and beginning with a dot and containing anything between them.
+=>$ grep ‘^\..*\.$’ mca4
+
+24.Locate lines that are less than 100 characters in length.
+=>grep ‘^.\{0,99\}$’ * file1
+
+25.Match all lines that start with Match all lines that start with ‘hello’. E g. : “hello there hello there”
+=>$ grep “^hello” file
